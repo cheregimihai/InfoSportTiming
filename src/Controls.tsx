@@ -24,21 +24,37 @@ const Controls: React.FC<ControlsProps> = ({ onAdjustTime, onManualTimeSet }) =>
 
   return (
     <div className="controls">
-      <div className="adjustment-controls">
-        <Button onClick={() => onAdjustTime(-5)} sx={{
-          backgroundColor: theme.palette.secondary.main,
-          color: theme.palette.secondary.contrastText,
-          '&:hover': {
-            backgroundColor: theme.palette.secondary.dark,
-          },
-        }}>-5s</Button>
-        <Button onClick={() => onAdjustTime(-1)} sx={{
-          backgroundColor: theme.palette.secondary.main,
-          color: theme.palette.secondary.contrastText,
-          '&:hover': {
-            backgroundColor: theme.palette.secondary.dark,
-          },
-        }}>-1s</Button>
+      <div className="adjustment-controls" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+          <Button onClick={() => onAdjustTime(-5)} sx={{
+            backgroundColor: theme.palette.secondary.main,
+            color: theme.palette.secondary.contrastText,
+            '&:hover': {
+              backgroundColor: theme.palette.secondary.dark,
+            },
+          }}>-5s</Button>
+          <Button onClick={() => onAdjustTime(-1)} sx={{
+            backgroundColor: theme.palette.secondary.main,
+            color: theme.palette.secondary.contrastText,
+            '&:hover': {
+              backgroundColor: theme.palette.secondary.dark,
+            },
+          }}>-1s</Button>
+          <Button onClick={() => onAdjustTime(1)} sx={{
+            backgroundColor: theme.palette.secondary.main,
+            color: theme.palette.secondary.contrastText,
+            '&:hover': {
+              backgroundColor: theme.palette.secondary.dark,
+            },
+          }}>+1s</Button>
+          <Button onClick={() => onAdjustTime(5)} sx={{
+            backgroundColor: theme.palette.secondary.main,
+            color: theme.palette.secondary.contrastText,
+            '&:hover': {
+              backgroundColor: theme.palette.secondary.dark,
+            },
+          }}>+5s</Button>
+        </div>
         <TextField
           label="MM:SS"
           variant="outlined"
@@ -46,22 +62,8 @@ const Controls: React.FC<ControlsProps> = ({ onAdjustTime, onManualTimeSet }) =>
           onChange={handleManualInputChange}
           onBlur={handleManualSet}
           onKeyPress={(e) => { if (e.key === 'Enter') handleManualSet(); }}
-          sx={{ width: '100px' }} /* Adjust width as needed */
+          sx={{ width: 'calc(100% - 20px)', maxWidth: '400px' }} /* Adjust width as needed */
         />
-        <Button onClick={() => onAdjustTime(1)} sx={{
-          backgroundColor: theme.palette.secondary.main,
-          color: theme.palette.secondary.contrastText,
-          '&:hover': {
-            backgroundColor: theme.palette.secondary.dark,
-          },
-        }}>+1s</Button>
-        <Button onClick={() => onAdjustTime(5)} sx={{
-          backgroundColor: theme.palette.secondary.main,
-          color: theme.palette.secondary.contrastText,
-          '&:hover': {
-            backgroundColor: theme.palette.secondary.dark,
-          },
-        }}>+5s</Button>
       </div>
     </div>
   );

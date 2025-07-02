@@ -1,1 +1,1 @@
-Enable scrolling to prevent content cutoff on smaller screens.
+Implement Material Design 3 with a refined color palette and component styling.
