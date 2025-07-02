@@ -1,0 +1,1 @@
+Improve landscape view on mobile, increase time font size
