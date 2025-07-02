@@ -1,1 +1,1 @@
-Reduce vertical gap between timer and controls
+Refactor layout for landscape mode, adjust button sizes, and center start button text.
