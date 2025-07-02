@@ -92,9 +92,12 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <TimerDisplay time={time} />
+      <div className="start-pause-control">
+        <button onClick={handleStartPause} className="start-pause-button">
+          {isActive ? 'Pause' : 'Start'}
+        </button>
+      </div>
       <Controls
-        isActive={isActive}
-        onStartPause={handleStartPause}
         onAdjustTime={handleAdjust}
         onManualTimeSet={handleManualTimeSet}
       />

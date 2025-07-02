@@ -14,30 +14,21 @@ body, html, #root, .App {
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 20px; /* Reduced gap between timer and controls */
+  gap: 0; /* No gap, flex items will manage spacing */
 }
 
 .timer-display {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .timer-display h1 {
-  font-size: 20vw; /* Make time bigger */
+  font-size: 30vh; /* Make time twice as big */
   font-family: monospace;
 }
 
-.timer-display {
-  flex: 0.7; /* Give less space to timer */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .controls {
-  flex: 1.3; /* Give more space to controls */
   display: flex;
   flex-direction: column; /* Stack controls vertically */
   justify-content: center;
@@ -45,32 +36,10 @@ body, html, #root, .App {
   gap: 10px; /* Reduce space between rows */
 }
 
-@media (orientation: landscape) {
-  .App {
-    flex-direction: row; /* Arrange timer and controls side-by-side in landscape */
-  }
-
-  .timer-display {
-    flex: 1;
-  }
-
-  .controls {
-    flex: 1;
-    justify-content: space-around; /* Distribute controls more evenly */
-  }
-}
-
-.adjustment-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
 .controls button,
 .controls input[type="text"] {
-  font-size: 2vw;
-  padding: 15px 30px;
+  font-size: 3.2vh; /* 60% larger */
+  padding: 1.6vh 3.2vh;
   border-radius: 10px;
   border: 2px solid #fff;
   background-color: #333;
@@ -78,28 +47,31 @@ body, html, #root, .App {
   text-align: center;
 }
 
-.controls button {
-  cursor: pointer;
-}
-
-.controls button:hover {
-  background-color: #555;
-}
-
-.controls input[type="text"] {
-  /* Removed explicit width to allow it to size based on content and padding */
-}
-
-.start-pause-control {
-  width: 100%;
+.start-pause-button {
+  font-size: 8vh; /* Use vh for vertical scaling */
+  padding: 2vh 8vh; /* Increased horizontal padding */
+  width: 80%; /* Make it wide */
+  max-width: 600px; /* Limit max width */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.start-pause-button {
-  font-size: 8vw; /* Make it much bigger */
-  padding: 30px 60px; /* Adjust padding for size */
-  width: 80%; /* Make it wide */
-  max-width: 600px; /* Limit max width */
+@media (orientation: landscape) {
+  .App {
+    flex-direction: column; /* Arrange timer, start button, and controls vertically in landscape */
+  }
+
+  .timer-display {
+    flex: 50 0 0; /* Take 50% of vertical space, no shrink, base 0 */
+  }
+
+  .start-pause-control {
+    flex: 35 0 0; /* Take 35% of vertical space, no shrink, base 0 */
+  }
+
+  .controls {
+    flex: 15 0 0; /* Take 15% of vertical space, no shrink, base 0 */
+    justify-content: space-around; /* Distribute controls more evenly */
+  }
 }

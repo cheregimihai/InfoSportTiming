@@ -2,13 +2,11 @@
 import React, { useState } from 'react';
 
 interface ControlsProps {
-  isActive: boolean;
-  onStartPause: () => void;
   onAdjustTime: (amount: number) => void;
   onManualTimeSet: (time: number) => void;
 }
 
-const Controls: React.FC<ControlsProps> = ({ isActive, onStartPause, onAdjustTime, onManualTimeSet }) => {
+const Controls: React.FC<ControlsProps> = ({ onAdjustTime, onManualTimeSet }) => {
   const [manualInput, setManualInput] = useState('');
 
   const handleManualInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,11 +36,6 @@ const Controls: React.FC<ControlsProps> = ({ isActive, onStartPause, onAdjustTim
         />
         <button onClick={() => onAdjustTime(1)}>+1s</button>
         <button onClick={() => onAdjustTime(5)}>+5s</button>
-      </div>
-      <div className="start-pause-control">
-        <button onClick={onStartPause} className="start-pause-button">
-          {isActive ? 'Pause' : 'Start'}
-        </button>
       </div>
     </div>
   );
