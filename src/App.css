@@ -3,8 +3,8 @@ body, html, #root, .App {
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
-  color: #fff;
+  background-color: #1A1A1A; /* Use the new background color */
+  color: #E0E0E0; /* Use the new text color */
 }
 
 .App {
@@ -13,47 +13,7 @@ body, html, #root, .App {
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 0; /* No gap, flex items will manage spacing */
-}
-
-.timer-display {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.timer-display h1 {
-  font-size: 30vh; /* Make time twice as big */
-  font-family: monospace;
-}
-
-.controls {
-  display: flex;
-  flex-direction: column; /* Stack controls vertically */
-  justify-content: center;
-  align-items: center;
-  gap: 10px; /* Reduce space between rows */
-}
-
-.controls button,
-.controls input[type="text"] {
-  font-size: 3.2vh; /* 60% larger */
-  padding: 1.6vh 3.2vh;
-  border-radius: 10px;
-  border: 2px solid #fff;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-}
-
-.start-pause-button {
-  font-size: 8vh; /* Use vh for vertical scaling */
-  padding: 2vh 8vh; /* Increased horizontal padding */
-  width: 80%; /* Make it wide */
-  max-width: 600px; /* Limit max width */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 10px; /* Reintroduce a small gap for breathing room */
 }
 
 @media (orientation: landscape) {

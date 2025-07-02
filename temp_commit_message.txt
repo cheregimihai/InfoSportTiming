@@ -1,1 +1,1 @@
-Refactor layout for landscape mode, adjust button sizes, and center start button text.
+Enable scrolling to prevent content cutoff on smaller screens.

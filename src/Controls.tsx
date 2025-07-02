@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { Button, TextField, useTheme } from '@mui/material';
 
 interface ControlsProps {
   onAdjustTime: (amount: number) => void;
@@ -8,6 +8,7 @@ interface ControlsProps {
 
 const Controls: React.FC<ControlsProps> = ({ onAdjustTime, onManualTimeSet }) => {
   const [manualInput, setManualInput] = useState('');
+  const theme = useTheme();
 
   const handleManualInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setManualInput(e.target.value);
@@ -24,18 +25,43 @@ const Controls: React.FC<ControlsProps> = ({ onAdjustTime, onManualTimeSet }) =>
   return (
     <div className="controls">
       <div className="adjustment-controls">
-        <button onClick={() => onAdjustTime(-5)}>-5s</button>
-        <button onClick={() => onAdjustTime(-1)}>-1s</button>
-        <input
-          type="text"
-          placeholder="MM:SS"
+        <Button onClick={() => onAdjustTime(-5)} sx={{
+          backgroundColor: theme.palette.secondary.main,
+          color: theme.palette.secondary.contrastText,
+          '&:hover': {
+            backgroundColor: theme.palette.secondary.dark,
+          },
+        }}>-5s</Button>
+        <Button onClick={() => onAdjustTime(-1)} sx={{
+          backgroundColor: theme.palette.secondary.main,
+          color: theme.palette.secondary.contrastText,
+          '&:hover': {
+            backgroundColor: theme.palette.secondary.dark,
+          },
+        }}>-1s</Button>
+        <TextField
+          label="MM:SS"
+          variant="outlined"
           value={manualInput}
           onChange={handleManualInputChange}
           onBlur={handleManualSet}
           onKeyPress={(e) => { if (e.key === 'Enter') handleManualSet(); }}
+          sx={{ width: '100px' }} /* Adjust width as needed */
         />
-        <button onClick={() => onAdjustTime(1)}>+1s</button>
-        <button onClick={() => onAdjustTime(5)}>+5s</button>
+        <Button onClick={() => onAdjustTime(1)} sx={{
+          backgroundColor: theme.palette.secondary.main,
+          color: theme.palette.secondary.contrastText,
+          '&:hover': {
+            backgroundColor: theme.palette.secondary.dark,
+          },
+        }}>+1s</Button>
+        <Button onClick={() => onAdjustTime(5)} sx={{
+          backgroundColor: theme.palette.secondary.main,
+          color: theme.palette.secondary.contrastText,
+          '&:hover': {
+            backgroundColor: theme.palette.secondary.dark,
+          },
+        }}>+5s</Button>
       </div>
     </div>
   );

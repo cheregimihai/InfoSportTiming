@@ -3,6 +3,81 @@ import TimerDisplay from './TimerDisplay';
 import Controls from './Controls';
 import './App.css';
 import { triggerShellyRelay } from './shellyService';
+import { Button, ThemeProvider, createTheme, Typography } from '@mui/material';
+
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#00838F', // Deep Teal/Cyan
+    },
+    secondary: {
+      main: '#FFB300', // Warm Amber
+    },
+    background: {
+      default: '#1A1A1A', // Very dark gray
+      paper: '#2C2C2C', // Slightly lighter dark gray for components
+    },
+    text: {
+      primary: '#E0E0E0', // Soft light gray
+      secondary: '#A0A0A0', // Medium gray
+    },
+  },
+  typography: {
+    fontFamily: 'Roboto, sans-serif', // A more common and readable font
+    h1: {
+      fontSize: '30vh', // Keep this for TimerDisplay
+      fontFamily: 'monospace',
+    },
+  },
+  components: {
+    MuiButton: {
+      defaultProps: {
+        variant: 'contained', // Default all buttons to contained
+      },
+      styleOverrides: {
+        root: {
+          fontSize: '2.5vh', // Slightly larger font for better readability
+          padding: '1.5vh 3vh', // Adjusted padding
+          borderRadius: '8px', // Slightly less rounded corners
+          border: 'none', // Remove border, rely on shadow/background
+          backgroundColor: '#424242', // Default button background
+          color: '#e0e0e0', // Default text color
+          boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.4)', // Subtle shadow for depth
+          '&:hover': {
+            backgroundColor: '#616161', // Lighter on hover
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.6)',
+          },
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiInputBase-input': {
+            color: '#e0e0e0',
+            textAlign: 'center',
+            fontSize: '2.5vh',
+            padding: '1.5vh 2vh',
+          },
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#616161', // Softer border color
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#00838F', // Primary color on hover
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#00838F', // Primary color when focused
+          },
+          '& .MuiInputLabel-root': {
+            color: '#A0A0A0',
+            fontSize: '2.5vh',
+          },
+        },
+      },
+    },
+  },
+});
 
 const App: React.FC = () => {
   // Initialize state from localStorage or defaults
@@ -90,18 +165,31 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App">
-      <TimerDisplay time={time} />
-      <div className="start-pause-control">
-        <button onClick={handleStartPause} className="start-pause-button">
-          {isActive ? 'Pause' : 'Start'}
-        </button>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <TimerDisplay time={time} />
+        <div className="start-pause-control">
+          <Button onClick={handleStartPause} sx={{
+            fontSize: '8vh',
+            padding: '2vh 8vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: theme.palette.primary.main, // Use primary color
+            color: theme.palette.primary.contrastText, // Use contrast text color
+            '&:hover': {
+              backgroundColor: theme.palette.primary.dark, // Darker primary on hover
+            },
+          }}>
+            {isActive ? 'Pause' : 'Start'}
+          </Button>
+        </div>
+        <Controls
+          onAdjustTime={handleAdjust}
+          onManualTimeSet={handleManualTimeSet}
+        />
       </div>
-      <Controls
-        onAdjustTime={handleAdjust}
-        onManualTimeSet={handleManualTimeSet}
-      />
-    </div>
+    </ThemeProvider>
   );
 };
 

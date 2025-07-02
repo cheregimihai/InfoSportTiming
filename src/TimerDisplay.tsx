@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Typography } from '@mui/material';
 
 interface TimerDisplayProps {
   time: number;
@@ -14,7 +14,7 @@ const formatTime = (timeInSeconds: number) => {
 const TimerDisplay: React.FC<TimerDisplayProps> = ({ time }) => {
   return (
     <div className="timer-display">
-      <h1>{formatTime(time)}</h1>
+      <Typography variant="h1" sx={{ fontSize: '15vh', fontFamily: 'monospace' }}>{formatTime(time)}</Typography>
     </div>
   );
 };
