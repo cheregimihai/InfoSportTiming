@@ -1,0 +1,49 @@
+
+Handball Timekeeping App – Functional Specification (v0.1)
+
+📱 Platform & Display
+- Device: Android phone
+- Orientation: Landscape only
+- Mode: Fullscreen web app (React-based)
+- Target User: Timekeeper
+
+🕒 Match Timer
+- Match duration: 2 x 30-minute halves (standard handball match)
+- Display: 
+  - Upper half: Large match timer, clearly visible
+    - Format: MM:SS
+    - Status: Running, Paused, Stopped, Half-time, Full-time
+
+🎛️ Controls (Bottom Half of Screen)
+- Time adjustment buttons:
+  - -5 sec
+  - -1 sec
+  - Manual time input (via small modal or input field)
+  - +1 sec
+  - +5 sec
+- Start / Pause toggle
+- Reset Timer button (with confirmation)
+- Controls should not be allowed to progress past 30:00 from times lower than 29:59 using the +1 sec,+5 sec.
+- Controls should not be allowed to progress backwards from 30:00 from times lower than 30:01 using the -1 sec,-5 sec.
+- Timer should stop at 30:00 and require that the user presses start to resume the count.
+
+🔌 Automation
+- Shelly Relay Integration (e.g. Shelly 1 or Shelly Plus 1)
+  - Trigger at 30:00 (Half-time) → flash goal-side LED lights
+  - Trigger at 60:00 (Full-time) → flash goal-side LED lights
+  - Flash pattern: configurable later (e.g. 3 x 1 second blinks)
+
+🧠 Memory/State Requirements
+- Keep match time and relay state in memory during page reload or accidental exit (localStorage or sessionStorage)
+- Configurable settings:
+  - Flash duration/pattern
+  - Shelly device IP/credentials
+  - Option to disable relay control for test mode
+
+🔧 Future Considerations
+- Sound feedback on half/full-time (buzzer or notification)
+- Optional third-party sync or backup (Firebase/local export)
+- Offline-first support
+- Referee interaction UI (penalties, timeouts, etc.)
+- Permissions/lock to avoid accidental edits
+- Dark mode for better visibility outdoors
